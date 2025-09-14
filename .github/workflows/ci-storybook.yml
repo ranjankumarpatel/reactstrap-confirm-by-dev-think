@@ -1,0 +1,68 @@
+name: CI & Storybook
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: true
+      - name: Type Check
+        run: pnpm tsc --noEmit
+      - name: Unit Tests
+        run: pnpm test
+      - name: Build Storybook
+        run: pnpm build-storybook
+      - name: Storybook Interaction Tests
+        run: pnpm test:storybook -- --coverage=false
+      - name: Upload Storybook Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: storybook-static
+
+  deploy-pages:
+    if: github.ref == 'refs/heads/master'
+    needs: build-test
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: true
+      - name: Build Storybook
+        run: pnpm build-storybook
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: storybook-static
+          force_orphan: true
