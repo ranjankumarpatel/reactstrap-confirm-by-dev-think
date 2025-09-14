@@ -10,6 +10,27 @@ const FancyButtons: React.FC<{ onClose: (r: boolean) => void }> = ({ onClose }) 
   </div>
 );
 
+const CODE = `import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';
+import { Button } from 'reactstrap';
+
+const FancyButtons = ({ onClose }) => (
+  <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+    <Button color="secondary" outline onClick={() => onClose(false)}>No Thanks</Button>
+    <Button color="warning" onClick={() => onClose(true)}>Do It!</Button>
+  </div>
+);
+
+export default function Example() {
+  return (
+    <ConfirmModal
+      onClose={(r) => console.log(r)}
+      title="Custom Buttons"
+      message="Buttons injected via buttonsComponent prop"
+      buttonsComponent={FancyButtons}
+    />
+  );
+}`;
+
 const meta: Meta<typeof ConfirmModal> = {
   title: 'Components/ConfirmModal/CustomButtons',
   component: ConfirmModal,
@@ -22,7 +43,8 @@ const meta: Meta<typeof ConfirmModal> = {
     docs: {
       description: {
         component: 'Demonstrates passing a custom component via buttonsComponent to fully control footer buttons.'
-      }
+      },
+      source: { code: CODE }
     }
   }
 };
