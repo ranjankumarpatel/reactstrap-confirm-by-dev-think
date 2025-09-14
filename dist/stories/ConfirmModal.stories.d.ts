@@ -1,0 +1,11 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { ConfirmModal } from '../lib';
+declare const meta: Meta<typeof ConfirmModal>;
+export default meta;
+type Story = StoryObj<typeof ConfirmModal>;
+export declare const Basic: Story;
+export declare const CustomColors: Story;
+export declare const WithoutCancel: Story;
+export declare const CustomSize: Story;
+export declare const CustomStyles: Story;
+export declare const InteractionConfirm: Story;
