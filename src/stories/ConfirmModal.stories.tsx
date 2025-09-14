@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { within, userEvent, expect } from '@storybook/test';
+import { within, userEvent, expect, screen, waitFor } from '@storybook/test';
 import { ConfirmModal } from '../lib';
+import { Button } from 'reactstrap';
+import { ShowCode } from './ShowCode';
 
 const BASIC_CODE = `import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';
 
@@ -30,8 +32,7 @@ const meta: Meta<typeof ConfirmModal> = {
     docs: {
       description: {
         component: 'The base modal component used by the confirm() API and useConfirm hook.'
-      },
-      source: { code: BASIC_CODE, state: 'open' }
+      }
     }
   }
 };
@@ -40,8 +41,33 @@ export default meta;
 
 type Story = StoryObj<typeof ConfirmModal>;
 
+const ModalTrigger: React.FC<{ args: any }> = ({ args }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div>
+      <Button color="secondary" onClick={() => setOpen(true)}>Open Confirm Modal</Button>
+      {open && (
+        <ConfirmModal
+          {...args}
+          onClose={(r) => {
+            // eslint-disable-next-line no-console
+            console.log('Result:', r);
+            setOpen(false);
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
 export const Basic: Story = {
   args: {},
+  render: (args: any) => (
+    <>
+      <ModalTrigger args={args} />
+      <ShowCode code={BASIC_CODE} />
+    </>
+  )
 };
 
 export const CustomColors: Story = {
@@ -52,99 +78,74 @@ export const CustomColors: Story = {
     confirmText: 'Accept',
     cancelText: 'Reject'
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';
-
-<ConfirmModal
-  onClose={(r) => console.log(r)}
-  title="Confirm Action"
-  message="Are you sure you want to proceed?"
-  confirmColor="success"
-  cancelColor="danger"
-  confirmText="Accept"
-  cancelText="Reject"
-/>`,
-        state: 'open'
-      }
-    }
-  }
+  render: (args: any) => (
+    <>
+      <ModalTrigger args={args} />
+      <ShowCode code={`import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';\n\n<ConfirmModal\n  onClose={(r) => console.log(r)}\n  title=\"Confirm Action\"\n  message=\"Are you sure you want to proceed?\"\n  confirmColor=\"success\"\n  cancelColor=\"danger\"\n  confirmText=\"Accept\"\n  cancelText=\"Reject\"\n/>`} />
+    </>
+  )
 };
 
 export const WithoutCancel: Story = {
   name: 'Without Cancel Button',
-  args: {
-    cancelText: undefined
-  },
-  parameters: {
-    docs: {
-      source: { code: `import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';
-
-<ConfirmModal
-  onClose={(r) => console.log(r)}
-  title="Confirm Action"
-  message="Proceed without cancel?"
-  confirmText="Yes"
-  cancelText={undefined}
-/>`, state: 'open' }
-    }
-  }
+  args: { cancelText: undefined },
+  render: (args: any) => (
+    <>
+      <ModalTrigger args={args} />
+      <ShowCode code={`import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';\n\n<ConfirmModal\n  onClose={(r) => console.log(r)}\n  title=\"Confirm Action\"\n  message=\"Proceed without cancel?\"\n  confirmText=\"Yes\"\n  cancelText={undefined}\n/>`} />
+    </>
+  )
 };
 
 export const CustomSize: Story = {
   name: 'Custom Size (lg)',
-  args: {
-    size: 'lg'
-  },
-  parameters: {
-    docs: {
-      source: { code: `import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';
-
-<ConfirmModal
-  onClose={(r) => console.log(r)}
-  title="Large Modal"
-  message="This confirm modal is large."
-  size="lg"
-/>`, state: 'open' }
-    }
-  }
+  args: { size: 'lg' },
+  render: (args: any) => (
+    <>
+      <ModalTrigger args={args} />
+      <ShowCode code={`import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';\n\n<ConfirmModal\n  onClose={(r) => console.log(r)}\n  title=\"Large Modal\"\n  message=\"This confirm modal is large.\"\n  size=\"lg\"\n/>`} />
+    </>
+  )
 };
 
 export const CustomStyles: Story = {
   name: 'Custom Inline Styles',
-  args: {
-    styleHeader: { background: '#0d6efd', color: 'white' },
-    styleFooter: { justifyContent: 'center' }
-  },
-  parameters: {
-    docs: {
-      source: { code: `import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';
-
-<ConfirmModal
-  onClose={(r) => console.log(r)}
-  title="Styled Header"
-  message="Custom inline styles for header and footer."
-  styleHeader={{ background: '#0d6efd', color: 'white' }}
-  styleFooter={{ justifyContent: 'center' }}
-/>`, state: 'open' }
-    }
-  }
+  args: { styleHeader: { background: '#0d6efd', color: 'white' }, styleFooter: { justifyContent: 'center' } },
+  render: (args: any) => (
+    <>
+      <ModalTrigger args={args} />
+      <ShowCode code={`import { ConfirmModal } from 'reactstrap-confirm-by-dev-think';\n\n<ConfirmModal\n  onClose={(r) => console.log(r)}\n  title=\"Styled Header\"\n  message=\"Custom inline styles for header and footer.\"\n  styleHeader={{ background: '#0d6efd', color: 'white' }}\n  styleFooter={{ justifyContent: 'center' }}\n/>`} />
+    </>
+  )
 };
 
 export const InteractionConfirm: Story = {
   name: 'Interaction Test: Confirm flow',
-  args: {
-    title: 'Clicking confirm resolves',
-    message: 'This story uses a play function to simulate a user click.'
+  args: { title: 'Clicking confirm resolves', message: 'This story uses a play function to simulate a user click.', confirmText: 'Ok', cancelText: 'Cancel' },
+  // We render the modal opened by default so the play function can immediately interact with it.
+  render: (args: any) => {
+  const OpenModal: React.FC<{ args: any }> = ({ args }: { args: any }) => {
+      const [open, setOpen] = React.useState(true);
+      return open ? (
+        <ConfirmModal
+          {...args}
+          onClose={() => {
+            // eslint-disable-next-line no-console
+            console.log('Result: confirmed');
+            setOpen(false);
+          }}
+        />
+      ) : null;
+    };
+    return <OpenModal args={args} />;
   },
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole('button');
-    // last button should be confirm
-    const confirmBtn = buttons[buttons.length - 1];
+  play: async ({ args }: { args: any }) => {
+    // The modal content is rendered in a portal (outside the canvas element),
+    // so we must query the global screen instead of within(canvasElement).
+    const confirmLabel = args.confirmText || 'Ok';
+    const confirmBtn = await screen.findByRole('button', { name: new RegExp(`^${confirmLabel}$`, 'i') });
     await userEvent.click(confirmBtn);
-    // After click, component should unmount. We just assert the DOM changed.
-    await expect(confirmBtn).not.toBeInTheDocument();
-  }
+    await waitFor(() => expect(confirmBtn).not.toBeInTheDocument());
+  },
+  parameters: { docs: { source: { code: `// Interaction test story for ConfirmModal using play function` } } }
 };

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { useConfirm } from '../lib';
+import { ShowCode } from './ShowCode';
 import { Button } from 'reactstrap';
 
 const Demo: React.FC = () => {
@@ -19,9 +20,9 @@ const Demo: React.FC = () => {
   };
 
   return (
-    <div style={{ minWidth: 320 }}>
+    <div className="uc-wrapper">
       <Button color="danger" onClick={handleClick}>Trigger Confirm</Button>
-      <div style={{ marginTop: 12 }}>
+      <div className="uc-result">
         Result: {result === null ? 'No action yet' : result ? 'Confirmed ✅' : 'Cancelled ❌'}
       </div>
     </div>
@@ -64,8 +65,7 @@ const meta: Meta<typeof Demo> = {
     docs: {
       description: {
         component: 'Demonstrates the useConfirm hook which wraps the promise-based confirm API.'
-      },
-      source: { code: CODE, state: 'open' }
+      }
     }
   }
 };
@@ -74,4 +74,11 @@ export default meta;
 
 type Story = StoryObj<typeof Demo>;
 
-export const Basic: Story = {};
+export const Basic: Story = {
+  render: () => (
+    <>
+      <Demo />
+      <ShowCode code={CODE} />
+    </>
+  )
+};
