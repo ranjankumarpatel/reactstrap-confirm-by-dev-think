@@ -30,7 +30,14 @@ jobs:
         with:
           node-version: 20
       - name: Install dependencies
-        run: npm install
+        run: |
+          if [ -f package-lock.json ]; then
+            echo "Attempting reproducible install with npm ci";
+            npm ci || (echo "npm ci failed; retrying with legacy peer deps" && npm install --legacy-peer-deps);
+          else
+            echo "No package-lock.json present; using npm install with legacy peer deps to bypass peer conflicts";
+            npm install --legacy-peer-deps;
+          fi
 
       - name: Build Storybook
         run: npx storybook build
