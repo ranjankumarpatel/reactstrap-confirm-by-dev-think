@@ -1,0 +1,41 @@
+name: Deploy Storybook (gh-pages branch)
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: storybook-branch
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Build Storybook
+        run: pnpm build-storybook
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: storybook-static
+          publish_branch: gh-pages
+          force_orphan: true
+      - name: Summary
+        run: |
+          echo "Branch deployment done (gh-pages)." >> $GITHUB_STEP_SUMMARY
