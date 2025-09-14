@@ -13,6 +13,7 @@
   "deprecated": false,
   "description": "Promise based confirm for reactstrap ",
   "devDependencies": {
+    "playwright": "^1.48.0",
     "@chromatic-com/storybook": "^4.1.1",
     "@popperjs/core": "^2.11.8",
     "@rollup/plugin-commonjs": "^28.0.6",
@@ -20,13 +21,13 @@
     "@rollup/plugin-typescript": "^12.1.4",
     "@storybook/addon-a11y": "^9.1.5",
     "@storybook/addon-docs": "^9.1.5",
-    "@storybook/addon-interactions": "9.0.0-alpha.10",
+    "@storybook/addon-interactions": "^9.1.5",
     "@storybook/addon-onboarding": "^9.1.5",
     "@storybook/addon-vitest": "^9.1.5",
     "@storybook/react": "^9.1.5",
     "@storybook/react-vite": "^9.1.5",
-    "@storybook/test": "9.0.0-alpha.2",
     "@storybook/test-runner": "^0.22.1",
+    "@storybook/test": "9.0.0-alpha.2",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@types/react": "^19.1.13",
@@ -109,7 +110,8 @@
     "build-storybook": "storybook build",
     "build:storybook": "storybook build",
     "deploy:storybook": "yarn build-storybook && echo 'Use GitHub Action for deploy (manual script placeholder)'",
-    "test:storybook": "test-storybook --ci"
+    "test:storybook": "test-storybook --ci",
+    "storybook:test": "(yarn storybook --ci --quiet & npx wait-on http://127.0.0.1:6006) && yarn test:storybook --url http://127.0.0.1:6006"
   },
   "exports": {
     ".": {

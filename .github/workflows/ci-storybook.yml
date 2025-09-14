@@ -29,6 +29,8 @@ jobs:
         run: |
           yarn storybook --ci --quiet &
           npx --yes wait-on@7 http://127.0.0.1:6006
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps --only-shell
       - name: Storybook Interaction Tests
         run: yarn test:storybook --url http://127.0.0.1:6006
       - name: Upload Storybook Artifact

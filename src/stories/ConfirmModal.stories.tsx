@@ -49,7 +49,7 @@ const ModalTrigger: React.FC<{ args: any }> = ({ args }) => {
       {open && (
         <ConfirmModal
           {...args}
-          onClose={(r) => {
+          onClose={(r: any) => {
             // eslint-disable-next-line no-console
             console.log('Result:', r);
             setOpen(false);

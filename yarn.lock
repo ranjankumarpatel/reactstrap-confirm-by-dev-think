@@ -1209,7 +1209,7 @@
     react-dom "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-interactions@9.0.0-alpha.10":
+"@storybook/addon-interactions@^9.1.5":
   version "9.0.0-alpha.10"
   resolved "https://registry.npmjs.org/@storybook/addon-interactions/-/addon-interactions-9.0.0-alpha.10.tgz#564baf4feaad462e86ebbf726ee9532b933e931f"
   integrity sha512-yM/JJUkDznulYxEt1RKDDZf/7qgmZENdEsHGFz4qbv3jWZoj0zaeV+ZF9PXs3r5mvGbJA4aZn5kWZ1B1FoySFg==
@@ -5906,7 +5906,7 @@ playwright-core@1.55.0, playwright-core@>=1.2.0:
   resolved "https://registry.npmjs.org/playwright-core/-/playwright-core-1.55.0.tgz#ec8a9f8ef118afb3e86e0f46f1393e3bea32adf4"
   integrity sha512-GvZs4vU3U5ro2nZpeiwyb0zuFaqb9sUiAJuyrWpcGouD8y9/HLgGbNRjIph7zU9D3hnPaisMl9zG9CgFi/biIg==
 
-playwright@^1.14.0:
+playwright@^1.14.0, playwright@^1.48.0:
   version "1.55.0"
   resolved "https://registry.npmjs.org/playwright/-/playwright-1.55.0.tgz#7aca7ac3ffd9e083a8ad8b2514d6f9ba401cc78b"
   integrity sha512-sdCWStblvV1YU909Xqx0DhOjPZE4/5lJsIS84IfN9dAZfcl/CIZ5O8l3o0j7hPMjDvqoTF8ZUcc+i/GL5erstA==
