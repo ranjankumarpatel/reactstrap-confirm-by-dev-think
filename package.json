@@ -1,72 +1,135 @@
 {
-    "author": {
-        "name": "Juan Pablo",
-        "email": "juanpa.ian.1992@gmail.com"
+  "author": {
+    "name": "devopsthink",
+    "email": "devopsthink@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "lodash.defaults": "^4.2.0"
+  },
+  "deprecated": false,
+  "description": "Promise based confirm for reactstrap ",
+  "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.1",
+    "@popperjs/core": "^2.11.8",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@storybook/addon-a11y": "^9.1.5",
+    "@storybook/addon-docs": "^9.1.5",
+    "@storybook/addon-interactions": "9.0.0-alpha.10",
+    "@storybook/addon-onboarding": "^9.1.5",
+    "@storybook/addon-vitest": "^9.1.5",
+    "@storybook/react": "^9.1.5",
+    "@storybook/react-vite": "^9.1.5",
+    "@storybook/test": "9.0.0-alpha.2",
+    "@storybook/test-runner": "^0.22.1",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "bootstrap": "^5.3.8",
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-storybook": "^9.1.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "reactstrap": "^9.2.3",
+    "rollup": "^4.50.1",
+    "rollup-plugin-dts": "^6.2.3",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "storybook": "^9.1.5",
+    "stylelint": "^16.24.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4"
+  },
+  "homepage": "https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "name": "reactstrap-confirm-by-dev-think",
+  "type": "module",
+  "style": "dist/style.css",
+  "engines": {
+    "node": ">=18"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "plugin:storybook/recommended"
+    ]
+  },
+  "peerDependencies": {
+    "bootstrap": "^5.3.0",
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0",
+    "reactstrap": "^9.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think.git"
+  },
+  "scripts": {
+    "start": "vite --config src/environment/vite.config.ts",
+    "dev": "vite",
+    "build": "rollup -c",
+    "build:vite": "vite build",
+    "preview": "vite preview",
+    "dev:env": "vite --config environment/vite.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "fix:js": "eslint --fix ./src/",
+    "lint:js": "eslint ./src/",
+    "lint:style": "stylelint ./src/**/*.css",
+    "fix:style": "pnpm lint:style --fix",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build:storybook": "storybook build",
+    "deploy:storybook": "pnpm build-storybook && echo 'Use GitHub Action for deploy (manual script placeholder)'",
+  "test:storybook": "test-storybook --ci"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
     },
-    "bugs": {
-        "url": "https://github.com/joomoodle/reactstrap-confirm-by-jdionicio/issues"
-    },
-    "bundleDependencies": false,
-    "dependencies": {
-        "lodash.defaults": "^4.2.0"
-    },
-    "deprecated": false,
-    "description": "Promise based confirm for reactstrap ",
-    "devDependencies": {
-        "@babel/cli": "^7.6.4",
-        "@babel/core": "^7.6.4",
-        "@babel/node": "^7.6.3",
-        "@babel/plugin-transform-async-to-generator": "^7.5.0",
-        "@babel/plugin-transform-regenerator": "^7.4.5",
-        "@babel/preset-env": "^7.6.3",
-        "@babel/preset-react": "^7.6.3",
-        "@babel/register": "^7.6.2",
-        "@babel/runtime": "^7.6.3",
-        "babel-eslint": "^10.0.3",
-        "babel-jest": "^24.9.0",
-        "babel-loader": "^8.0.6",
-        "core-js": "^3.3.2",
-        "enzyme": "^3.10.0",
-        "enzyme-adapter-react-16": "^1.15.1",
-        "enzyme-to-json": "^3.4.3",
-        "eslint": "^5.16.0",
-        "eslint-plugin-react": "^7.16.0",
-        "gh-pages": "^1.2.0",
-        "html-loader": "^0.5.5",
-        "html-webpack-plugin": "^3.2.0",
-        "jest": "^24.9.0",
-        "react": "^16.9.0",
-        "react-addons-test-utils": "^15.6.2",
-        "react-dom": "^16.9.0",
-        "reactstrap": "^8.1.1",
-        "regenerator-runtime": "^0.13.3",
-        "sinon": "^7.5.0",
-        "webpack": "^4.41.2",
-        "webpack-cli": "^3.3.9",
-        "webpack-dev-server": "^3.8.2"
-    },
-    "homepage": "https://github.com/joomoodle/reactstrap-confirm-by-jdionicio#readme",
-    "license": "MIT",
-    "main": "dist/index.js",
-    "name": "reactstrap-confirm-by-jdionicio",
-    "peerDependencies": {
-        "react": "^16.4.1",
-        "react-dom": "^16.4.1",
-        "reactstrap": "^8.1.1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com/joomoodle/reactstrap-confirm-by-jdionicio.git"
-    },
-    "scripts": {
-        "build": "babel src -d dist --copy-files",
-        "buildExample": "webpack --mode production",
-        "deploy": "gh-pages -d examples/dist",
-        "prepublishOnly": "npm run build",
-        "publish-demo": "npm run buildExample && npm run deploy",
-        "start": "webpack-dev-server --open --mode development",
-        "tdd": "jest --watch --notify ",
-        "test": "jest "
-    },
-    "version": "1.1.7"
+    "./hooks": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "dist/style.css"
+  ],
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core"
+    ]
+  },
+  "version": "1.1.7"
 }
