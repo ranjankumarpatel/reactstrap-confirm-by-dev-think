@@ -2,7 +2,8 @@
     <h1>Reactstrap Confirm</h1>
     <p>Promise-based confirmation modal & hook for React + Reactstrap</p>
     <p>
-        <a href="https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think/actions/workflows/ci-storybook.yml"><img alt="CI" src="https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think/actions/workflows/ci-storybook.yml/badge.svg" /></a>
+    <a href="https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think/actions/workflows/ci-storybook.yml"><img alt="CI" src="https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think/actions/workflows/ci-storybook.yml/badge.svg" /></a>
+    <a href="https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think/actions/workflows/deploy-storybook.yml"><img alt="Deploy Storybook" src="https://github.com/ranjankumarpatel/reactstrap-confirm-by-dev-think/actions/workflows/deploy-storybook.yml/badge.svg" /></a>
     <a href="https://www.npmjs.com/package/reactstrap-confirm-by-dev-think"><img alt="npm" src="https://img.shields.io/npm/v/reactstrap-confirm-by-dev-think.svg" /></a>
         <a href="https://ranjankumarpatel.github.io/reactstrap-confirm-by-dev-think/"><img alt="Storybook" src="https://img.shields.io/badge/Storybook-Live-%23FF4785" /></a>
         <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg" /></a>
