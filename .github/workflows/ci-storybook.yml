@@ -25,8 +25,12 @@ jobs:
         run: yarn test
       - name: Build Storybook
         run: yarn build-storybook
+      - name: Start Storybook (background)
+        run: |
+          yarn storybook --ci --quiet &
+          npx --yes wait-on@7 http://127.0.0.1:6006
       - name: Storybook Interaction Tests
-        run: yarn test:storybook -- --coverage=false
+        run: yarn test:storybook --url http://127.0.0.1:6006 -- --coverage=false
       - name: Upload Storybook Artifact
         uses: actions/upload-artifact@v4
         with:
