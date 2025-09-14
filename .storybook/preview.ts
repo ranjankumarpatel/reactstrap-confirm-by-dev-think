@@ -10,7 +10,13 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    layout: 'centered'
+    layout: 'centered',
+    docs: {
+      source: {
+        // Always show source code in Docs for easier copy/paste
+        state: 'open'
+      }
+    }
   },
 };
 

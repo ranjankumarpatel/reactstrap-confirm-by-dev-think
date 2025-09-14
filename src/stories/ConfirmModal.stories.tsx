@@ -31,7 +31,7 @@ const meta: Meta<typeof ConfirmModal> = {
       description: {
         component: 'The base modal component used by the confirm() API and useConfirm hook.'
       },
-      source: { code: BASIC_CODE }
+      source: { code: BASIC_CODE, state: 'open' }
     }
   }
 };
@@ -65,7 +65,8 @@ export const CustomColors: Story = {
   cancelColor="danger"
   confirmText="Accept"
   cancelText="Reject"
-/>`
+/>`,
+        state: 'open'
       }
     }
   }
@@ -86,7 +87,7 @@ export const WithoutCancel: Story = {
   message="Proceed without cancel?"
   confirmText="Yes"
   cancelText={undefined}
-/>` }
+/>`, state: 'open' }
     }
   }
 };
@@ -105,7 +106,7 @@ export const CustomSize: Story = {
   title="Large Modal"
   message="This confirm modal is large."
   size="lg"
-/>` }
+/>`, state: 'open' }
     }
   }
 };
@@ -126,7 +127,7 @@ export const CustomStyles: Story = {
   message="Custom inline styles for header and footer."
   styleHeader={{ background: '#0d6efd', color: 'white' }}
   styleFooter={{ justifyContent: 'center' }}
-/>` }
+/>`, state: 'open' }
     }
   }
 };

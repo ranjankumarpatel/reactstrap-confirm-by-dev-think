@@ -44,7 +44,7 @@ const meta: Meta<typeof ConfirmModal> = {
       description: {
         component: 'Demonstrates passing a custom component via buttonsComponent to fully control footer buttons.'
       },
-      source: { code: CODE }
+      source: { code: CODE, state: 'open' }
     }
   }
 };

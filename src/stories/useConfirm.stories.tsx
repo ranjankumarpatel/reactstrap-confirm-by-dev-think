@@ -65,7 +65,7 @@ const meta: Meta<typeof Demo> = {
       description: {
         component: 'Demonstrates the useConfirm hook which wraps the promise-based confirm API.'
       },
-      source: { code: CODE }
+      source: { code: CODE, state: 'open' }
     }
   }
 };

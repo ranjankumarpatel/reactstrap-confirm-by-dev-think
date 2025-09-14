@@ -69,7 +69,7 @@ const meta: Meta<typeof DemoConfirmAPI> = {
       description: {
         component: 'Promise-based API. Call `confirm(options)` and await a boolean resolve value.'
       },
-      source: { code: BASIC_CODE }
+      source: { code: BASIC_CODE, state: 'open' }
     }
   },
   tags: ['autodocs']
@@ -78,8 +78,8 @@ const meta: Meta<typeof DemoConfirmAPI> = {
 export default meta;
 type Story = StoryObj<typeof DemoConfirmAPI>;
 
-export const Basic: Story = { parameters: { docs: { source: { code: BASIC_CODE } } } };
+export const Basic: Story = { parameters: { docs: { source: { code: BASIC_CODE, state: 'open' } } } };
 export const DangerVariant: Story = {
   name: 'Danger Variant',
-  parameters: { docs: { source: { code: DANGER_CODE } } }
+  parameters: { docs: { source: { code: DANGER_CODE, state: 'open' } } }
 };
