@@ -35,10 +35,10 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
-          run_install: false
+          run_install: true
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Verify pnpm
+        run: pnpm --version
 
       - name: Build Storybook
         run: pnpm build-storybook
