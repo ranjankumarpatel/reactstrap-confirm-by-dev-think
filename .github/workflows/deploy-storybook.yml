@@ -30,18 +30,28 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - name: Install pnpm
-        run: npm i -g pnpm@9
-
-      - name: Show pnpm version
-        run: pnpm --version
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build Storybook
+      - name: Install pnpm (best effort)
         run: |
-          pnpm build-storybook || (echo "pnpm build failed; attempting npm fallback" && npx storybook build)
+          set -e
+          npm i -g pnpm@9 || echo "pnpm global install failed; will use npm fallback"
+
+      - name: Install dependencies (pnpm or npm)
+        run: |
+          if command -v pnpm >/dev/null 2>&1; then
+            echo "Using pnpm to install"
+            pnpm install --frozen-lockfile || (echo "pnpm install failed; falling back to npm ci" && npm ci)
+          else
+            echo "pnpm not found; using npm ci"
+            npm ci
+          fi
+
+      - name: Build Storybook (pnpm or npm)
+        run: |
+          if command -v pnpm >/dev/null 2>&1; then
+            pnpm build-storybook || (echo "pnpm build failed; npm fallback" && npx storybook build)
+          else
+            npx storybook build
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
