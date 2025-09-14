@@ -1,0 +1,5 @@
+.demo-container { font-family: system-ui, sans-serif; padding: 24px; max-width: 720px; margin: 0 auto; }
+.demo-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.demo-grid button { min-width: 180px; }
+.section { margin-top: 32px; }
+.note { font-size: 12px; color: #666; margin-top: 4px; }

@@ -30,17 +30,18 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - name: Enable Corepack (pnpm)
-        run: corepack enable
+      - name: Install pnpm
+        run: npm i -g pnpm@9
 
       - name: Show pnpm version
-        run: pnpm --version || true
+        run: pnpm --version
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build Storybook
-        run: pnpm build-storybook
+        run: |
+          pnpm build-storybook || (echo "pnpm build failed; attempting npm fallback" && npx storybook build)
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
